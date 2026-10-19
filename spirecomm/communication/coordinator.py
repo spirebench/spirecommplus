@@ -59,6 +59,7 @@ class Coordinator:
         self.stop_after_run = False
         self.in_game = False
         self.last_game_state = None
+        self.last_raw_game_state = None
         self.last_error = None
 
     def signal_ready(self):
@@ -166,7 +167,12 @@ class Coordinator:
             if self.last_error is None:
                 self.in_game = communication_state.get("in_game")
                 if self.in_game:
-                    self.last_game_state = Game.from_json(communication_state.get("game_state"), communication_state.get("available_commands"))
+                    raw_game_state = communication_state.get("game_state")
+                    self.last_raw_game_state = raw_game_state
+                    self.last_game_state = Game.from_json(raw_game_state, communication_state.get("available_commands"))
+                    # Keep the JSON the state was parsed from, for fields no parser reads
+                    self.last_game_state._raw_json = raw_game_state
+                    self.last_game_state._raw_full_payload = communication_state
             if perform_callbacks:
                 if self.last_error is not None:
                     self.action_queue.clear()
