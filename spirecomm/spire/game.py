@@ -125,6 +125,28 @@ class Game:
         game.cancel_available = "cancel" in available_commands or "leave" in available_commands \
                                 or "return" in available_commands or "skip" in available_commands
 
+        # CommunicationModPlus fields. These override the upstream defaults above:
+        # card_in_play and times_damaged are read whenever a combat state is sent,
+        # not only in the combat room phase, and current_action defaults to "".
+        combat_state = json_state.get("combat_state", {})
+        if combat_state:
+            card_in_play = combat_state.get("card_in_play")
+            if card_in_play:
+                game.card_in_play = spirecomm.spire.card.Card.from_json(card_in_play)
+            else:
+                game.card_in_play = None
+            game.times_damaged = combat_state.get("times_damaged", 0)
+        else:
+            game.card_in_play = None
+            game.times_damaged = 0
+        game.action_phase = json_state.get("action_phase", "")
+        game.current_action = json_state.get("current_action", "")
+        # Act 3 keys, nested under "keys"
+        keys = json_state.get("keys", {})
+        game.has_ruby_key = keys.get("ruby", False)
+        game.has_emerald_key = keys.get("emerald", False)
+        game.has_sapphire_key = keys.get("sapphire", False)
+
         return game
 
     def are_potions_full(self):

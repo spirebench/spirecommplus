@@ -8,7 +8,10 @@ class Node:
 
     @classmethod
     def from_json(cls, json_object):
-        return cls(json_object.get("x"), json_object.get("y"), json_object.get("symbol"))
+        node = cls(json_object.get("x"), json_object.get("y"), json_object.get("symbol"))
+        # CommunicationModPlus field: the burning elite that holds the Emerald Key
+        node.has_emerald_key = json_object.get("has_emerald_key", False)
+        return node
 
     def __repr__(self):
         return "({},{})".format(self.x, self.y)

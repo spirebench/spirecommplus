@@ -23,7 +23,10 @@ class Power:
         card = json_object.get("card", None)
         if card is not None:
             card = spirecomm.spire.card.Card.from_json(card)
-        return cls(power_id, name, amount, damage, misc, just_applied, card)
+        power = cls(power_id, name, amount, damage, misc, just_applied, card)
+        # CommunicationModPlus field: the power's live description text
+        power.description = json_object.get("description", "")
+        return power
 
     def __eq__(self, other):
         return self.power_id == other.power_id and self.amount == other.amount

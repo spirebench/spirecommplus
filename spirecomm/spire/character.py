@@ -73,6 +73,8 @@ class Player(Character):
         player = cls(json_object["max_hp"], json_object["current_hp"], json_object["block"], json_object["energy"])
         player.powers = [Power.from_json(json_power) for json_power in json_object["powers"]]
         player.orbs = [Orb.from_json(orb) for orb in json_object["orbs"]]
+        # CommunicationModPlus field
+        player.stance = json_object.get("stance", "")
         return player
 
 
@@ -111,6 +113,8 @@ class Monster(Character):
         move_hits = json_object.get("move_hits", 0)
         monster = cls(name, monster_id, max_hp, current_hp, block, intent, half_dead, is_gone, move_id, last_move_id, second_last_move_id, move_base_damage, move_adjusted_damage, move_hits)
         monster.powers = [Power.from_json(json_power) for json_power in json_object["powers"]]
+        # CommunicationModPlus field: stable for the monster object's life; None from a mod build without it
+        monster.uid = json_object.get("uid")
         return monster
 
     def __eq__(self, other):

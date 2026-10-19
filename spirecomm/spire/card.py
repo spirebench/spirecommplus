@@ -35,7 +35,7 @@ class Card:
 
     @classmethod
     def from_json(cls, json_object):
-        return cls(
+        card = cls(
             card_id=json_object["id"],
             name=json_object["name"],
             card_type=CardType[json_object["type"]],
@@ -49,6 +49,12 @@ class Card:
             is_playable=json_object.get("is_playable", False),
             exhausts=json_object.get("exhausts", False)
         )
+        # CommunicationModPlus fields
+        card.description = json_object.get("description", "")
+        card.ethereal = json_object.get("ethereal", False)
+        card.is_glowing = json_object.get("is_glowing", False)
+        card.bottled = json_object.get("bottled")
+        return card
 
     def __eq__(self, other):
         return self.uuid == other.uuid
