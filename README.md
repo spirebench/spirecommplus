@@ -16,7 +16,9 @@ changed.
 
 - **Cards:** `description` (the card's text with its current numbers),
   `ethereal`, `is_glowing` (the gold border of a card with a synergy right
-  now) and `bottled` (the Bottled relic holding it, if any).
+  now), `bottled` (the Bottled relic holding it, if any) and
+  `free_to_play_once` (Setup or Forethought made it free until played; its
+  `cost` then reads 0, as the game charges it).
 - **Powers and relics:** `description`, their live text.
 - **Player:** `stance`.
 - **Monsters:** `uid`, which stays the same for a monster's whole life, so two

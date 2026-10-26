@@ -54,6 +54,14 @@ class Card:
         card.ethereal = json_object.get("ethereal", False)
         card.is_glowing = json_object.get("is_glowing", False)
         card.bottled = json_object.get("bottled")
+        # Setup and Forethought make a card cost 0 until it is played
+        # (freeToPlayOnce), which the mod's "cost" (the game's costForTurn)
+        # does not show. The game draws such a card at 0, and so does every
+        # reading of cost from here on. A state without the field leaves the
+        # cost as it was.
+        card.free_to_play_once = bool(json_object.get("free_to_play_once", False))
+        if card.free_to_play_once and isinstance(card.cost, int) and card.cost > 0:
+            card.cost = 0
         return card
 
     def __eq__(self, other):
