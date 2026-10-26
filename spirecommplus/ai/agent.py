@@ -1,12 +1,12 @@
 import time
 import random
 
-from spirecomm.spire.game import Game
-from spirecomm.spire.character import Intent, PlayerClass
-import spirecomm.spire.card
-from spirecomm.spire.screen import RestOption
-from spirecomm.communication.action import *
-from spirecomm.ai.priorities import *
+from spirecommplus.spire.game import Game
+from spirecommplus.spire.character import Intent, PlayerClass
+import spirecommplus.spire.card
+from spirecommplus.spire.screen import RestOption
+from spirecommplus.communication.action import *
+from spirecommplus.ai.priorities import *
 
 
 class SimpleAgent:
@@ -90,8 +90,8 @@ class SimpleAgent:
     def get_play_card_action(self):
         playable_cards = [card for card in self.game.hand if card.is_playable]
         zero_cost_cards = [card for card in playable_cards if card.cost == 0]
-        zero_cost_attacks = [card for card in zero_cost_cards if card.type == spirecomm.spire.card.CardType.ATTACK]
-        zero_cost_non_attacks = [card for card in zero_cost_cards if card.type != spirecomm.spire.card.CardType.ATTACK]
+        zero_cost_attacks = [card for card in zero_cost_cards if card.type == spirecommplus.spire.card.CardType.ATTACK]
+        zero_cost_non_attacks = [card for card in zero_cost_cards if card.type != spirecommplus.spire.card.CardType.ATTACK]
         nonzero_cost_cards = [card for card in playable_cards if card.cost != 0]
         aoe_cards = [card for card in playable_cards if self.priorities.is_card_aoe(card)]
         if self.game.player.block > self.get_incoming_damage() - (self.game.act + 4):
@@ -106,7 +106,7 @@ class SimpleAgent:
             card_to_play = self.priorities.get_best_card_to_play(zero_cost_non_attacks)
         elif len(nonzero_cost_cards) > 0:
             card_to_play = self.priorities.get_best_card_to_play(nonzero_cost_cards)
-            if len(aoe_cards) > 0 and self.many_monsters_alive() and card_to_play.type == spirecomm.spire.card.CardType.ATTACK:
+            if len(aoe_cards) > 0 and self.many_monsters_alive() and card_to_play.type == spirecommplus.spire.card.CardType.ATTACK:
                 card_to_play = self.priorities.get_best_card_to_play(aoe_cards)
         elif len(zero_cost_attacks) > 0:
             card_to_play = self.priorities.get_best_card_to_play(zero_cost_attacks)
@@ -117,7 +117,7 @@ class SimpleAgent:
             available_monsters = [monster for monster in self.game.monsters if monster.current_hp > 0 and not monster.half_dead and not monster.is_gone]
             if len(available_monsters) == 0:
                 return EndTurnAction()
-            if card_to_play.type == spirecomm.spire.card.CardType.ATTACK:
+            if card_to_play.type == spirecommplus.spire.card.CardType.ATTACK:
                 target = self.get_low_hp_target()
             else:
                 target = self.get_high_hp_target()

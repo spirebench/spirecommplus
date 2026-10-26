@@ -4,9 +4,9 @@ import threading
 import json
 import collections
 
-from spirecomm.spire.game import Game
-from spirecomm.spire.screen import ScreenType
-from spirecomm.communication.action import Action, StartGameAction
+from spirecommplus.spire.game import Game
+from spirecommplus.spire.screen import ScreenType
+from spirecommplus.communication.action import Action, StartGameAction
 
 
 def read_stdin(input_queue):

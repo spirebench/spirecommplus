@@ -2,9 +2,9 @@ import itertools
 import datetime
 import sys
 
-from spirecomm.communication.coordinator import Coordinator
-from spirecomm.ai.agent import SimpleAgent
-from spirecomm.spire.character import PlayerClass
+from spirecommplus.communication.coordinator import Coordinator
+from spirecommplus.ai.agent import SimpleAgent
+from spirecommplus.spire.character import PlayerClass
 
 
 if __name__ == "__main__":

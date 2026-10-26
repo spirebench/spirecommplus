@@ -1,4 +1,4 @@
-from spirecomm.spire.screen import ScreenType, RewardType
+from spirecommplus.spire.screen import ScreenType, RewardType
 
 
 class Action:

@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name='spirecomm',
+    name='spirecommplus',
     version='0.6.0',
-    packages=['spirecomm', 'spirecomm.ai', 'spirecomm.spire', 'spirecomm.communication'],
-    url='https://github.com/ForgottenArbiter/spirecomm',
+    packages=['spirecommplus', 'spirecommplus.ai', 'spirecommplus.spire', 'spirecommplus.communication'],
+    url='https://github.com/spirebench/spirecommplus',
     license='MIT License',
     author='ForgottenArbiter',
     author_email='forgottenarbiter@gmail.com',
-    description='A package for interfacing with Slay the Spire through Communication Mod',
+    description='A package for interfacing with Slay the Spire through CommunicationModPlus',
     long_description=long_description,
     long_description_content_type='text/markdown',
     classifiers=[

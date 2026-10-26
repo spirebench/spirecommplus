@@ -1,11 +1,16 @@
-# spirecomm (SpireBench fork)
+# spirecommplus
 
-This fork of [spirecomm](https://github.com/ForgottenArbiter/spirecomm) reads
-the game states of [CommunicationModPlus](https://github.com/spirebench/CommunicationModPlus),
+spirecommplus is a fork of [spirecomm](https://github.com/ForgottenArbiter/spirecomm)
+that reads the game states of [CommunicationModPlus](https://github.com/spirebench/CommunicationModPlus),
 the game interface of SpireBench, an LLM agent harness for Slay the Spire.
 CommunicationModPlus adds fields to Communication Mod's game state, and this
 fork parses them onto the objects spirecomm already builds. Every new field
 has a default, so a state from vanilla Communication Mod still parses.
+
+The package is `spirecommplus` (`from spirecommplus.spire.game import Game`),
+mirroring the mod's own rename, so it installs alongside upstream spirecomm
+rather than over it. Code written for spirecomm needs only its imports
+changed.
 
 ## What it adds
 
@@ -35,9 +40,10 @@ parsers (`Game.from_json` and the classes it builds) work with either. What
 each new field means is described in the
 [CommunicationModPlus README](https://github.com/spirebench/CommunicationModPlus#more-in-each-state).
 
-Install with `pip install git+https://github.com/spirebench/spirecomm.git`.
+Install with `pip install git+https://github.com/spirebench/spirecommplus.git`.
 
-The original README follows.
+The original README of spirecomm follows; its examples use the old
+package name.
 
 ---
 

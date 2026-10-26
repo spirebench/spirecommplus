@@ -1,4 +1,4 @@
-import spirecomm.spire.card
+import spirecommplus.spire.card
 
 
 class Power:
@@ -22,7 +22,7 @@ class Power:
         just_applied = json_object.get("just_applied", False)
         card = json_object.get("card", None)
         if card is not None:
-            card = spirecomm.spire.card.Card.from_json(card)
+            card = spirecommplus.spire.card.Card.from_json(card)
         power = cls(power_id, name, amount, damage, misc, just_applied, card)
         # CommunicationModPlus field: the power's live description text
         power.description = json_object.get("description", "")

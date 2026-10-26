@@ -1,9 +1,9 @@
 from enum import Enum
 
-from spirecomm.spire.potion import Potion
-from spirecomm.spire.card import Card
-from spirecomm.spire.relic import Relic
-from spirecomm.spire.map import Node
+from spirecommplus.spire.potion import Potion
+from spirecommplus.spire.card import Card
+from spirecommplus.spire.relic import Relic
+from spirecommplus.spire.map import Node
 
 
 class ScreenType(Enum):

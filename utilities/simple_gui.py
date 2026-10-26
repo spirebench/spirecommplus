@@ -1,7 +1,7 @@
 import os
 import collections
 
-import spirecomm.communication.coordinator as coord
+import spirecommplus.communication.coordinator as coord
 
 os.environ["KIVY_NO_CONSOLELOG"] = "1"
 

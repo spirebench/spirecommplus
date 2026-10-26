@@ -1,6 +1,6 @@
 from enum import Enum
 
-from spirecomm.spire.power import Power
+from spirecommplus.spire.power import Power
 
 
 class Intent(Enum):
